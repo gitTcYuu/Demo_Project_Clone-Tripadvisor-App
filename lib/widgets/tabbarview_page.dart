@@ -27,7 +27,7 @@ class TabbarViewPage extends StatelessWidget {
           //Search
           if (search.isNotEmpty) {
             if (searchData[index]
-                    .name!
+                    .nametour!
                     .toLowerCase()
                     .toString()
                     .contains(search.toLowerCase()) ||

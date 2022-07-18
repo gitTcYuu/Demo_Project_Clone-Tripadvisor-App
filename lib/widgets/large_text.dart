@@ -10,6 +10,8 @@ class LargeText extends StatelessWidget {
       text,
       style: const TextStyle(
           fontSize: 20, fontWeight: FontWeight.bold, color: Colors.black87),
+      overflow: TextOverflow.ellipsis,
+      maxLines: 2,
     );
   }
 }

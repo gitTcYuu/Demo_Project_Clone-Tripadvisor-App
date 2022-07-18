@@ -16,7 +16,7 @@ class CardTripSearch extends StatelessWidget {
     return GestureDetector(
       onTap: () {
         //Trip
-        if (data[index].type == 'trip') {
+        if (data[index].type == 'tour') {
           Navigator.push(context, MaterialPageRoute(builder: ((context) {
             return DetailTripPage(
               data: data,
@@ -25,9 +25,14 @@ class CardTripSearch extends StatelessWidget {
           })));
         }
         //City
-        else if (data[index].type == 'city') {
+        else if (data[index].type == 'country') {
           Navigator.push(context, MaterialPageRoute(builder: ((context) {
-            return Container();
+            return Scaffold(
+              appBar: AppBar(
+                title: Text('${data[index].nametour}'),
+              ),
+              body: Container(),
+            );
           })));
         }
       },
@@ -51,7 +56,7 @@ class CardTripSearch extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  LargeText(text: '${data[index].name}'),
+                  LargeText(text: '${data[index].nametour}'),
                   const SizedBox(
                     height: 5,
                   ),
