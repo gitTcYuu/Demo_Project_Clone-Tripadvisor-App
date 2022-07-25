@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_temp_1/misc/app_colors_theme.dart';
-import 'package:flutter_temp_1/pages/navpages/book_trip_page.dart';
+import 'package:flutter_temp_1/pages/navpages/review_page.dart';
+import 'package:persistent_bottom_nav_bar/persistent-tab-view.dart';
+import 'package:flutter_temp_1/pages/navpages/plan_trip_page.dart';
 import 'package:flutter_temp_1/pages/navpages/home_page.dart';
 import 'package:flutter_temp_1/pages/navpages/search_page.dart';
-import 'package:flutter_temp_1/pages/navpages/user_page.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class MainPage extends StatefulWidget {
@@ -14,47 +15,64 @@ class MainPage extends StatefulWidget {
 }
 
 class _MainPageState extends State<MainPage> {
-  int currentIndex = 0;
-  List page = [
+  final PersistentTabController _controller =
+      PersistentTabController(initialIndex: 0);
+
+  List<Widget> pages = [
     const HomePage(),
     const SearchPage(),
-    const BookTripPage(),
-    const UserPage(),
+    const PlanTripPage(),
+    const ReviewPage(),
   ];
-
-  void onTap(int index) {
-    setState(() {
-      currentIndex = index;
-    });
-  }
+  List<PersistentBottomNavBarItem> navBarItems = [
+    PersistentBottomNavBarItem(
+      icon: const Icon(FontAwesomeIcons.house),
+      iconSize: 20,
+      title: 'สำรวจ',
+      activeColorPrimary: AppColors.secondaryColor,
+      activeColorSecondary: AppColors.primaryColor,
+      inactiveColorPrimary: Colors.grey[300],
+    ),
+    PersistentBottomNavBarItem(
+      icon: const Icon(FontAwesomeIcons.magnifyingGlass),
+      iconSize: 20,
+      title: 'ค้นหา',
+      activeColorPrimary: AppColors.secondaryColor,
+      activeColorSecondary: AppColors.primaryColor,
+      inactiveColorPrimary: Colors.grey[300],
+    ),
+    PersistentBottomNavBarItem(
+      icon: const Icon(FontAwesomeIcons.heart),
+      iconSize: 20,
+      title: 'วางแผน',
+      activeColorPrimary: AppColors.secondaryColor,
+      activeColorSecondary: AppColors.primaryColor,
+      inactiveColorPrimary: Colors.grey[300],
+    ),
+    PersistentBottomNavBarItem(
+      icon: const Icon(FontAwesomeIcons.pencil),
+      iconSize: 20,
+      title: 'รีวิว',
+      activeColorPrimary: AppColors.secondaryColor,
+      activeColorSecondary: AppColors.primaryColor,
+      inactiveColorPrimary: Colors.grey[300],
+    ),
+  ];
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: Scaffold(
-        body: page[currentIndex],
-        bottomNavigationBar: BottomNavigationBar(
-          elevation: 0,
-          type: BottomNavigationBarType.fixed,
-          backgroundColor: Colors.white,
-          iconSize: 20,
-          currentIndex: currentIndex,
-          onTap: onTap,
-          showSelectedLabels: false,
-          showUnselectedLabels: false,
-          selectedItemColor: AppColors.primaryColor,
-          unselectedItemColor: Colors.grey.withOpacity(0.7),
-          items: const [
-            BottomNavigationBarItem(
-                icon: Icon(FontAwesomeIcons.house), label: 'Home'),
-            BottomNavigationBarItem(
-                icon: Icon(FontAwesomeIcons.mapLocationDot),
-                label: 'Search Trips'),
-            BottomNavigationBarItem(
-                icon: Icon(FontAwesomeIcons.bookmark), label: 'Booking'),
-            BottomNavigationBarItem(
-                icon: Icon(FontAwesomeIcons.solidUser), label: 'User'),
-          ],
+    return Scaffold(
+      extendBody: true,
+      body: SafeArea(
+        child: PersistentTabView(
+          context,
+          controller: _controller,
+          screens: pages,
+          items: navBarItems,
+          confineInSafeArea: true,
+          navBarStyle: NavBarStyle.style3,
+          popAllScreensOnTapOfSelectedTab: true,
+          popActionScreens: PopActionScreensType.all,
         ),
       ),
     );

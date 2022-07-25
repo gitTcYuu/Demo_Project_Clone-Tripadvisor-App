@@ -40,6 +40,7 @@ dependencies:
   firebase_core: ^1.19.1
   firebase_auth: ^3.4.1
   form_field_validator: ^1.1.0
+  persistent_bottom_nav_bar: ^4.0.2
 
 dev_dependencies:
   flutter_test:
