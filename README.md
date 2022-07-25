@@ -1,7 +1,8 @@
-# Demo Project - Planning Trips App
+# Demo Project - Clone Tripadvisor Application
 
 Objective
-- learning Dart & Flutter widget
+- For learning Dart & Flutter widget
+
 
 Resource : 
 - Tripadvisor : https://th.tripadvisor.com/
