@@ -9,7 +9,7 @@ Feature
  Widget (Matterial/Cupertino Design)
 - Scaffold 
 - SafeArea
-- BottomNavigationBar (Dependencies : PersistentTabView)
+- BottomNavigationBar (Material Design 3)
 - Container/SizedBox -- image (decoration : DecorationImage)
 - ListView (builder, separated)
 - Column/Row
