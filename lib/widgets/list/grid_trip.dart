@@ -14,8 +14,8 @@ class _GridViewTripState extends State<GridViewTrip> {
 
   @override
   void initState() {
-    for (var i = 0; i < LikeTrip.length; i++) {
-      listLikeTrip.add(LikeTrip[i]);
+    for (var i = 0; i < likeTrip.length; i++) {
+      listLikeTrip.add(likeTrip[i]);
     }
     super.initState();
   }

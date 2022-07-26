@@ -1,4 +1,6 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_temp_1/pages/loading_page.dart';
 import 'package:flutter_temp_1/pages/navpages/main_page.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'firebase_options.dart';
@@ -16,9 +18,37 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const MaterialApp(
-      title: 'Flutter Template',
+      title: 'Flutter Clone Tripadvisor App',
       debugShowCheckedModeBanner: false,
-      home: MainPage(),
+      home: CheckAuthState(),
+    );
+  }
+}
+
+class CheckAuthState extends StatefulWidget {
+  const CheckAuthState({Key? key}) : super(key: key);
+
+  @override
+  State<CheckAuthState> createState() => _CheckAuthStateState();
+}
+
+class _CheckAuthStateState extends State<CheckAuthState> {
+  final auth = FirebaseAuth.instance;
+
+  @override
+  Widget build(BuildContext context) {
+    return StreamBuilder(
+      stream: FirebaseAuth.instance.userChanges(),
+      builder: (context, snapshot) {
+        if (snapshot.connectionState == ConnectionState.active) {
+          if (auth.currentUser != null) {
+            auth.currentUser!.reload();
+          }
+          return const MainPage();
+        }
+        //Loading
+        return const LoadingPage();
+      },
     );
   }
 }

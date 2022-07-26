@@ -1,5 +1,3 @@
-import 'dart:ui';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_temp_1/widgets/text/text_common.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';

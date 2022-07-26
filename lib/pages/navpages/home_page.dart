@@ -1,4 +1,6 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_temp_1/pages/signin_page.dart';
 import 'package:flutter_temp_1/widgets/text/text_common.dart';
 import 'package:flutter_temp_1/widgets/text/text_header.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -13,6 +15,8 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  final userAuth = FirebaseAuth.instance.currentUser;
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -34,29 +38,62 @@ class _HomePageState extends State<HomePage> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         //User Image
-                        Container(
-                          padding: const EdgeInsets.only(right: 20),
-                          height: 50,
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.end,
-                            children: [
-                              Icon(
-                                FontAwesomeIcons.solidCircleUser,
-                                size: 45,
-                                color: Colors.grey[700],
-                              )
-                              /* Container(
+                        userAuth != null
+                            ? GestureDetector(
+                                onTap: () {
+                                  setState(() {
+                                    FirebaseAuth.instance.signOut();
+                                  });
+                                },
+                                child: Container(
+                                  padding: const EdgeInsets.only(right: 25),
                                   height: 50,
-                                  width: 50,
-                                  decoration: BoxDecoration(
-                                    color: Colors.grey[400],
-                                    borderRadius: BorderRadius.circular(25),
-                                    image: const DecorationImage(image: NetworkImage('ImageUser'),fit: BoxFit.cover),
+                                  child: Row(
+                                    mainAxisAlignment: MainAxisAlignment.end,
+                                    children: [
+                                      Container(
+                                        height: 50,
+                                        width: 50,
+                                        decoration: BoxDecoration(
+                                          borderRadius:
+                                              BorderRadius.circular(25),
+                                          image: const DecorationImage(
+                                              image: NetworkImage(
+                                                  'userAuth.photoURL'),
+                                              fit: BoxFit.cover),
+                                        ),
+                                      ),
+                                    ],
                                   ),
-                                ), */
-                            ],
-                          ),
-                        ),
+                                ),
+                              )
+                            :
+                            //
+                            Container(
+                                padding: const EdgeInsets.only(right: 25),
+                                height: 50,
+                                child: Row(
+                                  mainAxisAlignment: MainAxisAlignment.end,
+                                  children: [
+                                    IconButton(
+                                      icon: Icon(
+                                        FontAwesomeIcons.solidCircleUser,
+                                        size: 45,
+                                        color: Colors.grey[700],
+                                      ),
+                                      onPressed: () {
+                                        showModalBottomSheet(
+                                          isScrollControlled: true,
+                                          context: context,
+                                          builder: (context) {
+                                            return const SigninPage();
+                                          },
+                                        );
+                                      },
+                                    )
+                                  ],
+                                ),
+                              ),
                         //
                         Container(
                           padding: const EdgeInsets.only(left: 20),

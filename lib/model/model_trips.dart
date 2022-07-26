@@ -39,7 +39,7 @@ List<City> city = [
           'https://dynamic-media-cdn.tripadvisor.com/media/photo-o/16/de/24/de/getlstd-property-photo.jpg?w=1200&h=-1&s=1'),
 ];
 
-List<City> LikeTrip = [
+List<City> likeTrip = [
   City(
       city: 'นิวยอร์กซิตี',
       cityDetail:

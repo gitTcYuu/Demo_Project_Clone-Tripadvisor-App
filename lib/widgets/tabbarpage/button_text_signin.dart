@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../../pages/signin_page.dart';
 import '../text/text_common.dart';
 
 class ButtonTextSignIn extends StatelessWidget {
@@ -15,7 +16,15 @@ class ButtonTextSignIn extends StatelessWidget {
               style: TextButton.styleFrom(
                   textStyle:
                       const TextStyle(decoration: TextDecoration.underline)),
-              onPressed: () {},
+              onPressed: () {
+                showModalBottomSheet(
+                  isScrollControlled: true,
+                  context: context,
+                  builder: (context) {
+                    return const SigninPage();
+                  },
+                );
+              },
               child: TextCommon(data: text))),
     );
   }
