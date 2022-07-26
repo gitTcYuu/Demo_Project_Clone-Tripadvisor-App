@@ -2,6 +2,9 @@
 
 Objective
 - For learning Dart & Flutter widget
+
+Feature
+- Sign in with google
  
  Widget (Matterial/Cupertino Design)
 - Scaffold 
@@ -22,6 +25,10 @@ Objective
 - GridView
 - Chip
 - ElevatedButton
+- FutureBuilder
+- StreamBuilder
+- ProgressIndicator (Circular, Linear)
+- GestureDetector
 
 Resource : 
 - Tripadvisor : https://th.tripadvisor.com/
