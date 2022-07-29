@@ -2,11 +2,14 @@
 
 Objective
 - For learning Dart & Flutter widget
+
+Feature
+- Sign in with google
  
  Widget (Matterial/Cupertino Design)
 - Scaffold 
 - SafeArea
-- BottomNavigationBar (Dependencies : PersistentTabView)
+- BottomNavigationBar (Material Design 3)
 - Container/SizedBox -- image (decoration : DecorationImage)
 - ListView (builder, separated)
 - Column/Row
@@ -22,6 +25,10 @@ Objective
 - GridView
 - Chip
 - ElevatedButton
+- FutureBuilder
+- StreamBuilder
+- ProgressIndicator (Circular, Linear)
+- GestureDetector
 
 Resource : 
 - Tripadvisor : https://th.tripadvisor.com/
