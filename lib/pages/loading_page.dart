@@ -6,12 +6,13 @@ class LoadingPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const SafeArea(
-        child: SizedBox(
-      height: double.maxFinite,
-      width: double.maxFinite,
-      child: Center(
-        child: CircularProgressIndicator.adaptive(),
+      child: SizedBox(
+        height: double.maxFinite,
+        width: double.maxFinite,
+        child: Center(
+          child: CircularProgressIndicator.adaptive(),
+        ),
       ),
-    ));
+    );
   }
 }

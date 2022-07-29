@@ -1,65 +1,81 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_temp_1/widgets/text/text_common.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import '../../widgets/tabbarpage/button_text_signin.dart';
+import '../../widgets/button/button_text_signin.dart';
 
-class TabBarTripPage extends StatelessWidget {
+class TabBarTripPage extends StatefulWidget {
   const TabBarTripPage({Key? key}) : super(key: key);
 
   @override
+  State<TabBarTripPage> createState() => _TabBarTripPageState();
+}
+
+class _TabBarTripPageState extends State<TabBarTripPage> {
+  final auth = FirebaseAuth.instance;
+
+  @override
   Widget build(BuildContext context) {
-    return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 15),
-      width: double.maxFinite,
-      child: Column(
-        children: [
-          //Feature Plan
-          SizedBox(
-            width: double.infinity,
+    return StreamBuilder<User?>(
+        stream: auth.userChanges(),
+        builder: (context, snapshot) {
+          return Container(
+            padding: const EdgeInsets.symmetric(horizontal: 15),
+            width: double.maxFinite,
             child: Column(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: const [
+              children: [
+                //Feature Plan
                 SizedBox(
-                  height: 50,
+                  width: double.infinity,
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: const [
+                      SizedBox(
+                        height: 50,
+                      ),
+                      FeatureTrip(
+                          icon: FontAwesomeIcons.solidHeart,
+                          text:
+                              'บันทึกสถานที่ท่องเที่ยวที่คุณต้องการไปเยี่ยมชม'),
+                      SizedBox(
+                        height: 20,
+                      ),
+                      FeatureTrip(
+                          icon: FontAwesomeIcons.locationDot,
+                          text: 'ดูบันทึกของคุณในแผนที่'),
+                      SizedBox(
+                        height: 20,
+                      ),
+                      FeatureTrip(
+                          icon: FontAwesomeIcons.fileLines,
+                          text: 'ติดตามโน้ต ลิงค์ และอื่นๆ อีกมากมาย'),
+                      SizedBox(
+                        height: 20,
+                      ),
+                      FeatureTrip(
+                          icon: FontAwesomeIcons.userPlus,
+                          text: 'แบ่งปันและร่วมมือกันสำหรับแผนของคุณ'),
+                      SizedBox(
+                        height: 20,
+                      ),
+                    ],
+                  ),
                 ),
-                FeatureTrip(
-                    icon: FontAwesomeIcons.solidHeart,
-                    text: 'บันทึกสถานที่ท่องเที่ยวที่คุณต้องการไปเยี่ยมชม'),
-                SizedBox(
-                  height: 20,
+                //Form Create My Trip
+                Container(
+                  margin: const EdgeInsets.symmetric(vertical: 10),
+                  width: double.maxFinite,
+                  child: const FormCreateMyTrip(),
                 ),
-                FeatureTrip(
-                    icon: FontAwesomeIcons.locationDot,
-                    text: 'ดูบันทึกของคุณในแผนที่'),
-                SizedBox(
-                  height: 20,
-                ),
-                FeatureTrip(
-                    icon: FontAwesomeIcons.fileLines,
-                    text: 'ติดตามโน้ต ลิงค์ และอื่นๆ อีกมากมาย'),
-                SizedBox(
-                  height: 20,
-                ),
-                FeatureTrip(
-                    icon: FontAwesomeIcons.userPlus,
-                    text: 'แบ่งปันและร่วมมือกันสำหรับแผนของคุณ'),
-                SizedBox(
-                  height: 20,
-                ),
+                //User Sign in
+                snapshot.hasData
+                    ? Container()
+                    : const ButtonTextSignIn(
+                        text: 'เข้าสู่ระบบเพื่อเข้าถึงทริปของคุณ'),
               ],
             ),
-          ),
-          //Form Create My Trip
-          Container(
-            margin: const EdgeInsets.symmetric(vertical: 10),
-            width: double.maxFinite,
-            child: const FormCreateMyTrip(),
-          ),
-          //User Sign in
-          const ButtonTextSignIn(text: 'เข้าสู่ระบบเพื่อเข้าถึงทริปของคุณ'),
-        ],
-      ),
-    );
+          );
+        });
   }
 }
 

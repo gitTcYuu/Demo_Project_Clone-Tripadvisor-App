@@ -4,7 +4,9 @@ class TextCommon extends StatelessWidget {
   final String? data;
   final Color? color;
   final FontWeight? weight;
-  const TextCommon({Key? key, required this.data, this.color, this.weight})
+  final double? size;
+  const TextCommon(
+      {Key? key, required this.data, this.color, this.weight, this.size})
       : super(key: key);
 
   @override
@@ -13,7 +15,7 @@ class TextCommon extends StatelessWidget {
       '$data',
       style: TextStyle(
         fontWeight: weight ?? FontWeight.normal,
-        fontSize: 16,
+        fontSize: size ?? 16,
         color: color ?? Colors.black87,
         //overflow: TextOverflow.ellipsis,
       ),

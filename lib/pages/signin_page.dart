@@ -1,4 +1,5 @@
 import 'dart:developer';
+import 'package:flutter/foundation.dart' show kIsWeb;
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
@@ -47,6 +48,8 @@ class _SigninPageState extends State<SigninPage> {
           Container(
             margin: const EdgeInsets.only(bottom: 15),
             padding: const EdgeInsets.symmetric(horizontal: 20),
+            height: 90,
+            width: double.maxFinite,
             child: Row(
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
@@ -56,7 +59,7 @@ class _SigninPageState extends State<SigninPage> {
                   decoration: const BoxDecoration(
                     image: DecorationImage(
                       image: NetworkImage(
-                          'https://www.edigitalagency.com.au/wp-content/uploads/tripadvisor-logo-circle-owl-icon-black-green-858x858.png'),
+                          'https://static.tacdn.com/img2/brand_refresh/Tripadvisor_logoset_solid_green.svg'),
                       fit: BoxFit.cover,
                     ),
                   ),
@@ -133,16 +136,30 @@ class _SigninPageState extends State<SigninPage> {
                           borderRadius: BorderRadius.circular(30))),
                   onPressed: () async {
                     try {
-                      await signInWithGoogle().then((value) {
-                        //
-                        Fluttertoast.showToast(
-                            msg: 'Welcome, ${value!.user!.displayName}',
-                            gravity: ToastGravity.BOTTOM,
-                            timeInSecForIosWeb: 1,
-                            fontSize: 14);
-                        //
-                        Navigator.pop(context);
-                      });
+                      //
+                      if (kIsWeb) {
+                        await signInWithGoogleWeb().then((value) {
+                          //
+                          Fluttertoast.showToast(
+                              msg: 'Welcome, ${value!.user!.displayName}',
+                              gravity: ToastGravity.BOTTOM,
+                              timeInSecForIosWeb: 1,
+                              fontSize: 14);
+                          //
+                          Navigator.pop(context);
+                        });
+                      } else {
+                        await signInWithGoogleNative().then((value) {
+                          //
+                          Fluttertoast.showToast(
+                              msg: 'Welcome, ${value!.user!.displayName}',
+                              gravity: ToastGravity.BOTTOM,
+                              timeInSecForIosWeb: 1,
+                              fontSize: 14);
+                          //
+                          Navigator.pop(context);
+                        });
+                      }
                     } on FirebaseAuthException catch (e) {
                       String msg = '${e.code} : ${e.message}';
                       Fluttertoast.showToast(

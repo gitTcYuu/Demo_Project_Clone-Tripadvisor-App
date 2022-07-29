@@ -1,5 +1,8 @@
+import 'dart:developer';
+
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_temp_1/pages/error_page.dart';
 import 'package:flutter_temp_1/pages/loading_page.dart';
 import 'package:flutter_temp_1/pages/navpages/main_page.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -37,17 +40,20 @@ class _CheckAuthStateState extends State<CheckAuthState> {
 
   @override
   Widget build(BuildContext context) {
-    return StreamBuilder(
+    return StreamBuilder<User?>(
       stream: FirebaseAuth.instance.userChanges(),
       builder: (context, snapshot) {
-        if (snapshot.connectionState == ConnectionState.active) {
-          if (auth.currentUser != null) {
-            auth.currentUser!.reload();
-          }
-          return const MainPage();
+        //Error
+        if (snapshot.hasError) {
+          return ErrorPage(
+            errortext: snapshot.error.toString(),
+          );
+        } else if (snapshot.connectionState == ConnectionState.waiting) {
+          log('${snapshot.connectionState}, ${snapshot.error}');
+          return const LoadingPage();
         }
-        //Loading
-        return const LoadingPage();
+        log('${snapshot.connectionState}');
+        return const MainPage();
       },
     );
   }

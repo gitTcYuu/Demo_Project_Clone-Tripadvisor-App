@@ -18,6 +18,7 @@ class ButtonTextSignIn extends StatelessWidget {
                       const TextStyle(decoration: TextDecoration.underline)),
               onPressed: () {
                 showModalBottomSheet(
+                  useRootNavigator: true,
                   isScrollControlled: true,
                   context: context,
                   builder: (context) {
