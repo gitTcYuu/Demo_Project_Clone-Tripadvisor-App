@@ -4,7 +4,8 @@ Objective
 - For learning Dart & Flutter widget
 
 Feature
-- Sign in with google
+- Authentication with google (Web/Native)
+- Authentication with facebook (Web/Native)
  
  Widget (Matterial/Cupertino Design)
 - Scaffold 
