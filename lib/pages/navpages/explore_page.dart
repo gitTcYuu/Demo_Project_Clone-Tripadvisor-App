@@ -51,7 +51,7 @@ class _ExplorePageState extends State<ExplorePage> {
                                     alignment: Alignment.centerRight,
                                     child: CircleImageUser(
                                       imageUrl: snapshot.hasData
-                                          ? auth.currentUser?.photoURL
+                                          ? snapshot.data?.photoURL
                                           : null,
                                       route: const UserMainPage(),
                                     )),

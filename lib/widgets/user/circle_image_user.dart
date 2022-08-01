@@ -18,13 +18,13 @@ class CircleImageUser extends StatelessWidget {
           height: 45,
           width: 45,
           decoration: BoxDecoration(
-              color: Colors.grey,
+              color: Colors.white,
               borderRadius: BorderRadius.circular(25),
               image: DecorationImage(
                   image: imageUrl != null
                       ? NetworkImage('$imageUrl')
                       : const NetworkImage(
-                          'https://images.unsplash.com/photo-1420593248178-d88870618ca0?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NXx8bmF0dXJhbHxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=500&q=60'),
+                          'https://img.icons8.com/fluency/344/user-male-circle.png'),
                   fit: BoxFit.cover)),
         ));
   }

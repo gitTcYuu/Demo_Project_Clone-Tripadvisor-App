@@ -3,7 +3,8 @@ import 'package:flutter/foundation.dart' show kIsWeb;
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_temp_1/widgets/signin/google_signin.dart';
+import 'package:flutter_temp_1/widgets/signin/facebook_auth.dart';
+import 'package:flutter_temp_1/widgets/signin/google_auth.dart';
 import 'package:flutter_temp_1/widgets/text/text_header.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -136,7 +137,7 @@ class _SigninPageState extends State<SigninPage> {
                           borderRadius: BorderRadius.circular(30))),
                   onPressed: () async {
                     try {
-                      //
+                      // Check Platform
                       if (kIsWeb) {
                         await signInWithGoogleWeb().then((value) {
                           //
@@ -209,7 +210,42 @@ class _SigninPageState extends State<SigninPage> {
                       ),
                       shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(30))),
-                  onPressed: () {},
+                  onPressed: () async {
+                    try {
+                      // Check Platform
+                      if (kIsWeb) {
+                        await signInWithFacebookWeb().then((value) {
+                          //
+                          Fluttertoast.showToast(
+                              msg: 'Welcome, ${value.user!.displayName}',
+                              gravity: ToastGravity.BOTTOM,
+                              timeInSecForIosWeb: 1,
+                              fontSize: 14);
+                          //
+                          Navigator.pop(context);
+                        });
+                      } else {
+                        await signInWithFacebookNative().then((value) {
+                          //
+                          Fluttertoast.showToast(
+                              msg: 'Welcome, ${value.user!.displayName}',
+                              gravity: ToastGravity.BOTTOM,
+                              timeInSecForIosWeb: 1,
+                              fontSize: 14);
+                          //
+                          Navigator.pop(context);
+                        });
+                      }
+                    } on FirebaseAuthException catch (e) {
+                      String msg = '${e.code} : ${e.message}';
+                      log(msg);
+                      Fluttertoast.showToast(
+                          msg: msg,
+                          gravity: ToastGravity.BOTTOM,
+                          timeInSecForIosWeb: 1,
+                          fontSize: 14);
+                    }
+                  },
                   icon: Padding(
                     padding: const EdgeInsets.only(left: 10),
                     child: Container(

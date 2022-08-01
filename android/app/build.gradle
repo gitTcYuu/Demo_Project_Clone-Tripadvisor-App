@@ -70,10 +70,13 @@ flutter {
 
 dependencies {
     // Import the Firebase BoM
-  implementation platform('com.google.firebase:firebase-bom:30.3.1')
-  // Declare the dependency for the Firebase SDK for Google Analytics
-implementation 'com.google.firebase:firebase-analytics'
+    implementation platform('com.google.firebase:firebase-bom:30.3.1')
+    // Declare the dependency for the Firebase SDK for Google Analytics
+    implementation 'com.google.firebase:firebase-analytics'
     //implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
     implementation "com.google.android.material:material:1.6.1"
+    implementation 'com.facebook.android:facebook-android-sdk:[4,5)'
+
+    
 
 }

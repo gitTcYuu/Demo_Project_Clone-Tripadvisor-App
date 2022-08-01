@@ -31,8 +31,3 @@ Future<UserCredential?> signInWithGoogleWeb() async {
 
   return await FirebaseAuth.instance.signInWithPopup(googleAuthProvider);
 }
-
-Future signOut() async {
-  await FirebaseAuth.instance.signOut();
-  await GoogleSignIn().signOut();
-}

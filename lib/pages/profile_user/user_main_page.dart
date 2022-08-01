@@ -1,9 +1,9 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_temp_1/widgets/signin/google_signin.dart';
 import 'package:flutter_temp_1/widgets/text/text_header.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import '../../widgets/signin/user_signout.dart';
 import '../../widgets/text/text_common.dart';
 import '../../widgets/user/circle_image_user.dart';
 import '../signin_page.dart';
