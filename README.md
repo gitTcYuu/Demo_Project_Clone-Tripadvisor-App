@@ -2,6 +2,7 @@
 
 Objective
 - For learning Dart & Flutter widget
+- Firebase Authentication / Filestore
 
 Feature
 - Authentication with google (Web/Native)
@@ -19,7 +20,8 @@ Feature
 - Icon (Dependencies : FontAwesomeIcon)
 - Expanded
 - image (decoration : DecorationImage)
-- Padding / Divider
+- Padding
+- Divider
 - floatingActionButton
 - Card
 - DefaultTabController
