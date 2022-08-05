@@ -13,5 +13,7 @@ Future signOut() async {
   } else if (user?.providerData[0].providerId == 'google.com') {
     await FirebaseAuth.instance.signOut();
     await GoogleSignIn().signOut();
+  } else {
+    await FirebaseAuth.instance.signOut();
   }
 }

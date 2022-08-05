@@ -1,5 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_temp_1/widgets/animation/animation_route.dart';
 import 'package:flutter_temp_1/widgets/text/text_header.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -100,6 +101,7 @@ class _UserMainPageState extends State<UserMainPage> {
                           margin: const EdgeInsets.only(bottom: 15),
                           width: double.maxFinite,
                           child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               //
                               Divider(color: Colors.grey[100], thickness: 10),
@@ -108,29 +110,29 @@ class _UserMainPageState extends State<UserMainPage> {
                                 padding:
                                     const EdgeInsets.symmetric(horizontal: 20),
                                 width: double.maxFinite,
-                                child: Align(
-                                  alignment: Alignment.centerLeft,
-                                  child: TextButton(
-                                      onPressed: () {
-                                        setState(() async {
-                                          await auth.currentUser
-                                              ?.delete()
-                                              .then((value) {
-                                            //
-                                            Fluttertoast.showToast(
-                                                msg: 'Delete Complete.',
-                                                gravity: ToastGravity.BOTTOM,
-                                                timeInSecForIosWeb: 1,
-                                                fontSize: 14);
-                                            //
-                                          });
+                                child: TextButton(
+                                    onPressed: () {
+                                      setState(() async {
+                                        await auth.currentUser
+                                            ?.delete()
+                                            .then((value) {
+                                          //
+                                          Fluttertoast.showToast(
+                                              msg: 'Delete Complete.',
+                                              gravity: ToastGravity.BOTTOM,
+                                              timeInSecForIosWeb: 1,
+                                              fontSize: 14);
+                                          //
                                         });
-                                      },
-                                      child: const TextCommon(
+                                      });
+                                    },
+                                    child: const SizedBox(
+                                      width: double.maxFinite,
+                                      child: TextCommon(
                                         data: 'ลบบัญชีผู้ใช้',
                                         color: Colors.red,
-                                      )),
-                                ),
+                                      ),
+                                    )),
                               ),
                               //
                               Divider(color: Colors.grey[100], thickness: 10),
@@ -173,14 +175,8 @@ class _UserMainPageState extends State<UserMainPage> {
                                 shape: RoundedRectangleBorder(
                                     borderRadius: BorderRadius.circular(25))),
                             onPressed: () {
-                              showModalBottomSheet(
-                                useRootNavigator: true,
-                                isScrollControlled: true,
-                                context: context,
-                                builder: (context) {
-                                  return const SigninPage();
-                                },
-                              );
+                              Navigator.of(context)
+                                  .push(animationRoute(const SigninPage()));
                             },
                             child: const TextCommon(
                               data: 'เข้าสู่ระบบ',
