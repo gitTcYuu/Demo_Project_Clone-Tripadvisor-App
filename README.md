@@ -7,14 +7,20 @@ Objective
 - JSON
 
 Feature
+
+User
 - Authentication with google (Web/Native)
 - Authentication with facebook (Web/Native)
+- Authentication with Email/Password (Web/Native)
+
+...
+
  
  Widget (Matterial/Cupertino Design)
 - Scaffold 
 - SafeArea
 - BottomNavigationBar (Material Design 3)
-- Container/SizedBox -- image (decoration : DecorationImage)
+- Container/SizedBox
 - ListView (builder, separated)
 - Column/Row
 - Text/RichText
@@ -34,7 +40,10 @@ Feature
 - StreamBuilder
 - ProgressIndicator (Circular, Linear)
 - GestureDetector
+- showDialog / showModalBottomSheet
+- SnackBar / showToast
 
 Resource : 
 - Tripadvisor : https://th.tripadvisor.com/
 - Unsplash : https://unsplash.com/
+
