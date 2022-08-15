@@ -3,8 +3,7 @@
 Objective
 - For learning Dart & Flutter widget
 - Firebase Authentication / Filestore
-- Http
-- JSON
+
 
 Feature
 
